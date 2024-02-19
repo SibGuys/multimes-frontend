@@ -1,0 +1,28 @@
+.spacebar {
+  width: 40.1rem;
+  height: 108rem;
+  position: relative;
+  left: 9.6rem;
+  background-color: #c0c0c0;
+}
+
+.spacebar__header {
+  background-color: #a7a7a7;
+  display: flex;
+  width: 40.1rem;
+  height: 8rem;
+}
+
+.spacebar__header-title {
+  font-weight: 400;
+  font-size: 2rem;
+  color: #000;
+  margin-top: 2.8rem;
+  margin-left: 1.9rem;
+}
+
+.spacebar__header-settings {
+    margin-left: 21.8rem;
+}
+
+

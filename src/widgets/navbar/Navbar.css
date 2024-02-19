@@ -1,17 +1,12 @@
 .navbar {
   width: 9.6rem;
-  height: 100%;
+  height: 108rem;
   position: absolute;
   left: 0;
   background-color: #d0d0d0;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.styled-button {
-  border: 0;
-  background: 0;
 }
 
 .navbar__profile {
