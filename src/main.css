@@ -1,3 +1,8 @@
+:root {
+  --primary-main: #c6d5ff;
+  --text-secondary: #828282;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -8,7 +13,7 @@ html {
 }
 
 body {
-  font-family: Roboto, sans-serif;
+  font-family: Inter, sans-serif;
 }
 
 button {
