@@ -4,11 +4,16 @@ import Avatar from "./featues/avatar/Avatar";
 import Space from "@/shared/ui/space/Space";
 
 const App = () => {
-    return (
-         <>
-          {<div className="smth"> <Avatar name={"DY"} messengerIcon={"telegram"}></Avatar></div>}
-         </>
-     )
+  return (
+    <>
+      {
+        <div className="smth">
+          {" "}
+          <Avatar name={"DY"} messengerIcon={"telegram"}></Avatar>
+        </div>
+      }
+    </>
+  );
 };
 
 export default App;

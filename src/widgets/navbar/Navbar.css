@@ -1,24 +1,24 @@
-.navbar{
+.navbar {
   position: relative;
   width: 9.6rem;
   height: 108rem;
   background-color: var(--primary-main);
 }
 
-.navbar-list{
+.navbar-list {
   align-content: center;
 }
 
-.navbar-list_item{
+.navbar-list_item {
   padding-bottom: 4rem;
 }
 
-.navbar-list_item:first-child{
+.navbar-list_item:first-child {
   padding-top: 2.8rem;
 }
 
-.navbar-list_item:last-child{
-  position:absolute;
+.navbar-list_item:last-child {
+  position: absolute;
   bottom: 0;
   padding-left: 3.2rem;
   padding-right: 3.2rem;

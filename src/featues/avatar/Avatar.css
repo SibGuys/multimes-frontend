@@ -1,24 +1,23 @@
 .avatar {
-    width: 6.3rem;
-    height: 6.3rem;
-    border-radius: 999.9rem;
-    background-color: var(--primary-main);
+  width: 6.3rem;
+  height: 6.3rem;
+  border-radius: 999.9rem;
+  background-color: var(--primary-main);
 }
 
 .avatar-name {
-    font-size: 1.8rem;
-    font-weight: 500;
-    width: 2.567rem;
-    height: 2.256rem;
-    text-align: center;
-    padding-top: 1.7rem;
-    margin-left: auto;
-    margin-right: auto;
-
+  font-size: 1.8rem;
+  font-weight: 500;
+  width: 2.567rem;
+  height: 2.256rem;
+  text-align: center;
+  padding-top: 1.7rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .messenger-icon {
-    width: 3.2rem;
-    height: 3.2rem;
-    float: right;
+  width: 3.2rem;
+  height: 3.2rem;
+  float: right;
 }
