@@ -10,9 +10,9 @@ export type SpacebarProps = {
 };
 
 const Spacebar = ({ title, dialogList }: SpacebarProps) => {
-  const short_name = (name : string) => {
-    return name.split(" ")[0][0] + name.split(" ")[1][0]
-  }
+  const short_name = (name: string) => {
+    return name.split(" ")[0][0] + name.split(" ")[1][0];
+  };
 
   return (
     <section className="spacebar">
@@ -25,10 +25,15 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
       <main className="spacebar__main">
         {dialogList.map((dialog) => (
           <div key={dialog.username} className="dialog">
-            <Avatar name={short_name(dialog.username)} messengerIcon={dialog.messenger}></Avatar>
+            <Avatar
+              name={short_name(dialog.username)}
+              messengerIcon={dialog.messenger}
+            ></Avatar>
             <div className="dialog__content">
               <header className="dialog__content_header">
-                <h1 className="dialog__content_header-username">{dialog.username}</h1>
+                <h1 className="dialog__content_header-username">
+                  {dialog.username}
+                </h1>
                 <p className="dialog__content_header-last-message-time">
                   {dialog.dialogAttributes?.lastMessageTime}
                 </p>

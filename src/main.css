@@ -1,9 +1,9 @@
 :root {
-  --background-main: #FFF;
+  --background-main: #fff;
   --primary-main: #c6d5ff;
-  --primary-light: #ECF4FF;
+  --primary-light: #ecf4ff;
   --text-secondary: #828282;
-  --secondary-contrast: #2A457A;
+  --secondary-contrast: #2a457a;
 }
 
 * {
