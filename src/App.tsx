@@ -5,11 +5,21 @@ import Space from "@/shared/ui/space/Space";
 import DialogAttributes from "./entities/dialog-attributes/DialogAttributes";
 import Dialog from "./entities/dialog/Dialog";
 
+import "./App.css"
+
 const dialog: Dialog[] = [
   {
     messenger: "telegram",
-    username: "Gerhard",
-    isOnline: false,
+    username: "Ivan Ivanov",
+    dialogAttributes: {
+      lastMessage: "Hello",
+      lastMessageTime: "19:20",
+      countOfUnreadMesaages: 9,
+    },
+  },
+  {
+    messenger: "telegram",
+    username: "Andrey Andreev",
     dialogAttributes: {
       lastMessage: "Hello",
       lastMessageTime: "19:20",
@@ -21,10 +31,10 @@ const dialog: Dialog[] = [
 const App = () => {
   return (
     <>
-      {
+      <main className="main"> 
         <Navbar />
-        // <Spacebar title="Base" dialogList={dialog}></Spacebar>
-      }
+        <Spacebar title={"Base"} dialogList={dialog} />
+      </main>
     </>
   );
 };

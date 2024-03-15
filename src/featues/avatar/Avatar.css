@@ -3,14 +3,15 @@
   height: 6.3rem;
   border-radius: 999.9rem;
   background-color: var(--primary-main);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .avatar-name {
-  font-size: 1.8rem;
+  font-size: 2.4rem;
   font-weight: 500;
-  width: 2.567rem;
-  height: 2.256rem;
-  text-align: center;
   padding-top: 1.7rem;
   margin-left: auto;
   margin-right: auto;
@@ -19,5 +20,8 @@
 .messenger-icon {
   width: 3.2rem;
   height: 3.2rem;
-  float: right;
+  top: 3.4rem;
+  left: 3.8rem;
+  position: absolute;
+  float: inline-start;
 }

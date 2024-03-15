@@ -3,7 +3,7 @@ import "./Avatar.css";
 
 type AvatarProps = {
   name: string;
-  messengerIcon: string;
+  messengerIcon: string | undefined;
 };
 const Avatar = ({ name, messengerIcon }: AvatarProps) => {
   return (
