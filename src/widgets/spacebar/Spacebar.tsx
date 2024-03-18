@@ -1,7 +1,7 @@
 import "./Spacebar.css";
 
-import searchParamSvg from "src/assets/svg/icon-param.svg"
-import searchSvg from "src/assets/svg/icon-search.svg"
+import searchParamSvg from "src/assets/svg/icon-param.svg";
+import searchSvg from "src/assets/svg/icon-search.svg";
 import settingsSvg from "src/assets/svg/icon-settings.svg";
 import Dialog from "src/entities/dialog/Dialog";
 
@@ -34,7 +34,7 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
           </li>
           <li className="functional_element">
             <button className="functional_settings">
-              <img src={settingsSvg} alt="Space settings button"/>
+              <img src={settingsSvg} alt="Space settings button" />
             </button>
           </li>
         </ul>
@@ -59,12 +59,12 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
                 <p className="dialog__content_main-last-message">
                   {dialog.dialogAttributes?.lastMessage}
                 </p>
-                {dialog.dialogAttributes?.countOfUnreadMesaages != undefined && 
-                  dialog.dialogAttributes?.countOfUnreadMesaages != 0 &&
-                  <div className="dialog__content_main-count-of-unread-messages">
-                    <p>{dialog.dialogAttributes?.countOfUnreadMesaages}</p>
-                  </div>
-                }
+                {dialog.dialogAttributes?.countOfUnreadMesaages != undefined &&
+                  dialog.dialogAttributes?.countOfUnreadMesaages != 0 && (
+                    <div className="dialog__content_main-count-of-unread-messages">
+                      <p>{dialog.dialogAttributes?.countOfUnreadMesaages}</p>
+                    </div>
+                  )}
               </main>
             </div>
           </div>
