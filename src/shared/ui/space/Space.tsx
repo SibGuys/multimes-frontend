@@ -1,5 +1,5 @@
-import React from "react";
 import "./Space.css";
+
 type SpaceProps = {
   children?: string;
   chosenSpace: string;

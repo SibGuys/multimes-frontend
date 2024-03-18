@@ -1,8 +1,11 @@
-import Avatar from "../../featues/avatar/Avatar";
 import "./Spacebar.css";
 
+import searchParamSvg from "src/assets/svg/icon-param.svg"
+import searchSvg from "src/assets/svg/icon-search.svg"
 import settingsSvg from "src/assets/svg/icon-settings.svg";
 import Dialog from "src/entities/dialog/Dialog";
+
+import Avatar from "../../featues/avatar/Avatar";
 
 export type SpacebarProps = {
   title?: string;
@@ -18,9 +21,23 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
     <section className="spacebar">
       <header className="spacebar__header">
         <h1 className="spacebar__header-title">{title}</h1>
-        <button className="spacebar__header-settings">
-          <img src={settingsSvg} alt="Space settings button" />
-        </button>
+        <ul className="spacebar__header_functional">
+          <li className="functional_element">
+            <button className="functional_search">
+              <img src={searchSvg} alt="Space search button" />
+            </button>
+          </li>
+          <li className="functional_element">
+            <button className="functional_search-parametr">
+              <img src={searchParamSvg} alt="Space search parametr button" />
+            </button>
+          </li>
+          <li className="functional_element">
+            <button className="functional_settings">
+              <img src={settingsSvg} alt="Space settings button"/>
+            </button>
+          </li>
+        </ul>
       </header>
       <main className="spacebar__main">
         {dialogList.map((dialog) => (
@@ -42,9 +59,12 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
                 <p className="dialog__content_main-last-message">
                   {dialog.dialogAttributes?.lastMessage}
                 </p>
-                <p className="dialog__content_main-count-of-unread-messages">
-                  {dialog.dialogAttributes?.countOfUnreadMesaages}
-                </p>
+                {dialog.dialogAttributes?.countOfUnreadMesaages != undefined && 
+                  dialog.dialogAttributes?.countOfUnreadMesaages != 0 &&
+                  <div className="dialog__content_main-count-of-unread-messages">
+                    <p>{dialog.dialogAttributes?.countOfUnreadMesaages}</p>
+                  </div>
+                }
               </main>
             </div>
           </div>

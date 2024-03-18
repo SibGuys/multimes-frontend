@@ -1,11 +1,8 @@
+import "./App.css";
+
+import Dialog from "./entities/dialog/Dialog";
 import Navbar from "./widgets/navbar/Navbar";
 import Spacebar from "./widgets/spacebar/Spacebar";
-import Avatar from "./featues/avatar/Avatar";
-import Space from "@/shared/ui/space/Space";
-import DialogAttributes from "./entities/dialog-attributes/DialogAttributes";
-import Dialog from "./entities/dialog/Dialog";
-
-import "./App.css";
 
 const dialog: Dialog[] = [
   {
@@ -23,7 +20,7 @@ const dialog: Dialog[] = [
     dialogAttributes: {
       lastMessage: "Hello",
       lastMessageTime: "19:20",
-      countOfUnreadMesaages: 9,
+      countOfUnreadMesaages: 0,
     },
   },
 ];
