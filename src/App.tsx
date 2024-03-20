@@ -32,7 +32,10 @@ const App = () => {
       <main className="main">
         <Navbar />
         <Spacebar title={"Base"} dialogList={dialog} />
-        <Messagespace userName={dialog[1].username} messanger={dialog[1].messenger}/>
+        <Messagespace
+          userName={dialog[1].username}
+          messanger={dialog[1].messenger}
+        />
       </main>
     </>
   );
