@@ -45,6 +45,7 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
             <Avatar
               name={short_name(dialog.username)}
               messengerIcon={dialog.messenger}
+              size="big"
             ></Avatar>
             <div className="dialog__content">
               <header className="dialog__content_header">

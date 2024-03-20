@@ -1,5 +1,6 @@
 .spacebar {
-  width: 40.1rem;
+  max-width: 40.1rem;
+  width: 100%;
   height: 108rem;
   position: relative;
   background-color: var(--background-main);

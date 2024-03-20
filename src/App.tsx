@@ -3,6 +3,7 @@ import "./App.css";
 import Dialog from "./entities/dialog/Dialog";
 import Navbar from "./widgets/navbar/Navbar";
 import Spacebar from "./widgets/spacebar/Spacebar";
+import Messagespace from "./widgets/messagespace/Messagespace";
 
 const dialog: Dialog[] = [
   {
@@ -31,6 +32,7 @@ const App = () => {
       <main className="main">
         <Navbar />
         <Spacebar title={"Base"} dialogList={dialog} />
+        <Messagespace userName={dialog[1].username} messanger={dialog[1].messenger}/>
       </main>
     </>
   );
