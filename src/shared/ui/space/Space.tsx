@@ -1,12 +1,13 @@
 import "./Space.css";
 
-type SpaceProps = {
+export type SpaceProps = {
   children?: string;
   chosenSpace: string;
 };
+
 const Space = ({ children, chosenSpace }: SpaceProps) => {
   return (
-    <a href="#" className="space">
+    <a href="#space" className="space">
       <img
         className="space-img"
         src={`src/assets/svg/${chosenSpace}.svg`}

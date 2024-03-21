@@ -29,13 +29,14 @@ const Messagespace = ({ userName, messanger, messages }: MessagespaceProps) => {
             />
             <p className="user-name">{userName}</p>
           </div>
-          <a href="">
+          <a href="#link">
             <img src={logo} alt="logo Multimes" />
           </a>
         </div>
         <div className="chat_messages">
           {messages.map((message) => (
             <Message
+              key={message.messageTime}
               userName={userName}
               text={message.text}
               messageTime={message.messageTime}

@@ -17,20 +17,18 @@ const Message = ({ userName, text, messageTime, isInter }: MessageProps) => {
   };
 
   return (
-    <>
-      <div className={isInter ? "message__left-side" : "message__right-side"}>
-        {isInter ? (
-          <>
-            <Avatar name={short_name(userName)} messengerIcon="" size="small" />
-            <p className="message_user-name">{userName}</p>
-          </>
-        ) : (
-          <></>
-        )}
-        <p className="message-text">{text}</p>
-        <p className="message-time">{messageTime}</p>
-      </div>
-    </>
+    <div className={isInter ? "message__left-side" : "message__right-side"}>
+      {isInter ? (
+        <>
+          <Avatar name={short_name(userName)} messengerIcon="" size="small" />
+          <p className="message_user-name">{userName}</p>
+        </>
+      ) : (
+        <></>
+      )}
+      <p className="message-text">{text}</p>
+      <p className="message-time">{messageTime}</p>
+    </div>
   );
 };
 
