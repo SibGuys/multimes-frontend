@@ -1,10 +1,21 @@
-.message {
+.message__left-side {
   background-color: var(--background-main);
   border-radius: 1.6rem;
   padding: 1.6rem;
-  width: 25.6rem;
+  max-width: 32rem;
+  width: fit-content;
   margin-bottom: 3.2rem;
-  bottom: 8rem;
+  margin-right: auto;
+}
+
+.message__right-side {
+  background-color: var(--primary-main);
+  border-radius: 1.6rem;
+  padding: 1.6rem;
+  max-width: 32rem;
+  width: fit-content;
+  margin-bottom: 3.2rem;
+  margin-left: auto;
 }
 
 .message_user-name {

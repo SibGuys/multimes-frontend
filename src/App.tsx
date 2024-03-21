@@ -28,31 +28,40 @@ const dialog: Dialog[] = [
 ];
 
 const messages: MessageProps[] = [
-  { userName: "Oleg Tinkov", text: "First message", messageTime: "19:20" },
   {
-    userName: "Oleg Tinkov",
+    text: "First message",
+    messageTime: "19:20",
+    isInter: true,
+  },
+  {
     text: "Second message",
     messageTime: "19:21",
+    isInter: true,
   },
   {
-    userName: "Oleg Tinkov",
     text: "How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?",
     messageTime: "19:22",
+    isInter: true,
   },
   {
-    userName: "Oleg Tinkov",
     text: "Fourth message",
     messageTime: "4:20",
+    isInter: true,
   },
   {
-    userName: "Oleg Tinkov",
     text: "Fifth message",
     messageTime: "4:21",
+    isInter: false,
   },
   {
-    userName: "Oleg Tinkov",
     text: "Sixth message",
     messageTime: "4:22",
+    isInter: true,
+  },
+  {
+    text: "Perpetum mobile",
+    messageTime: "4:201488228",
+    isInter: false,
   },
 ];
 

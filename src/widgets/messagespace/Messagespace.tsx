@@ -39,6 +39,7 @@ const Messagespace = ({ userName, messanger, messages }: MessagespaceProps) => {
               userName={userName}
               text={message.text}
               messageTime={message.messageTime}
+              isInter={message.isInter}
             />
           ))}
         </div>
