@@ -18,7 +18,7 @@ const Navbar = () => {
             <Space chosenSpace={"icon-all-chat"} />
           </li>
           <li className="navbar-list_item">
-            <Space chosenSpace={"inactive-space"} children={"name"} />
+            <Space chosenSpace={"inactive-space"}>name</Space>
           </li>
           <li className="navbar-list_item">
             <Space chosenSpace={"icon-account"}></Space>{" "}

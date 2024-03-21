@@ -1,11 +1,10 @@
-import Avatar from "../../featues/avatar/Avatar";
-import Message from "../../featues/message/Message";
-import { MessageProps } from "src/featues/message/Message";
+import "./Messagespace.css";
+
+import Message, { MessageProps } from "src/featues/message/Message";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
-
-import "./Messagespace.css";
+import Avatar from "../../featues/avatar/Avatar";
 
 type MessagespaceProps = {
   userName: string;
@@ -37,7 +36,7 @@ const Messagespace = ({ userName, messanger, messages }: MessagespaceProps) => {
         <div className="chat_messages">
           {messages.map((message) => (
             <Message
-              userName={message.userName}
+              userName={userName}
               text={message.text}
               messageTime={message.messageTime}
             />

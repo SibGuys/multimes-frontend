@@ -6,7 +6,7 @@ type SpaceProps = {
 };
 const Space = ({ children, chosenSpace }: SpaceProps) => {
   return (
-    <a className="space">
+    <a href="#" className="space">
       <img
         className="space-img"
         src={`src/assets/svg/${chosenSpace}.svg`}

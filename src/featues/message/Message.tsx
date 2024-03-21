@@ -1,6 +1,6 @@
-import Avatar from "../avatar/Avatar";
-
 import "./Message.css";
+
+import Avatar from "../avatar/Avatar";
 
 export type MessageProps = {
   userName: string;

@@ -1,10 +1,10 @@
 import "./App.css";
 
 import Dialog from "./entities/dialog/Dialog";
+import { MessageProps } from "./featues/message/Message";
+import Messagespace from "./widgets/messagespace/Messagespace";
 import Navbar from "./widgets/navbar/Navbar";
 import Spacebar from "./widgets/spacebar/Spacebar";
-import Messagespace from "./widgets/messagespace/Messagespace";
-import { MessageProps } from "./featues/message/Message";
 
 const dialog: Dialog[] = [
   {
@@ -28,11 +28,31 @@ const dialog: Dialog[] = [
 ];
 
 const messages: MessageProps[] = [
-  { userName: "Oleg Tinkov", text: "Hello", messageTime: "19:20" },
+  { userName: "Oleg Tinkov", text: "First message", messageTime: "19:20" },
   {
     userName: "Oleg Tinkov",
-    text: "How are you?",
+    text: "Second message",
     messageTime: "19:21",
+  },
+  {
+    userName: "Oleg Tinkov",
+    text: "How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?",
+    messageTime: "19:22",
+  },
+  {
+    userName: "Oleg Tinkov",
+    text: "Fourth message",
+    messageTime: "4:20",
+  },
+  {
+    userName: "Oleg Tinkov",
+    text: "Fifth message",
+    messageTime: "4:21",
+  },
+  {
+    userName: "Oleg Tinkov",
+    text: "Sixth message",
+    messageTime: "4:22",
   },
 ];
 
@@ -45,7 +65,7 @@ const App = () => {
         <Messagespace
           userName={dialog[1].username}
           messanger={dialog[1].messenger}
-          messages={messages}
+          messages={messages.reverse()}
         />
       </main>
     </>
