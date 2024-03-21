@@ -1,5 +1,6 @@
 import Avatar from "../../featues/avatar/Avatar";
 import Message from "../../featues/message/Message";
+import { MessageProps } from "src/featues/message/Message";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
@@ -9,9 +10,10 @@ import "./Messagespace.css";
 type MessagespaceProps = {
   userName: string;
   messanger?: string;
+  messages: MessageProps[];
 };
 
-const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
+const Messagespace = ({ userName, messanger, messages }: MessagespaceProps) => {
   const short_name = (name: string) => {
     return name.split(" ")[0][0] + name.split(" ")[1][0];
   };
@@ -33,11 +35,13 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
           </a>
         </div>
         <div className="chat_messages">
-          <Message
-            userName="Andrey Andreev"
-            text="Hello!"
-            messageTime="14:13"
-          ></Message>
+          {messages.map((message) => (
+            <Message
+              userName={message.userName}
+              text={message.text}
+              messageTime={message.messageTime}
+            />
+          ))}
         </div>
         <div className="chat-input">
           <input

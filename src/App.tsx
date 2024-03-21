@@ -4,6 +4,7 @@ import Dialog from "./entities/dialog/Dialog";
 import Navbar from "./widgets/navbar/Navbar";
 import Spacebar from "./widgets/spacebar/Spacebar";
 import Messagespace from "./widgets/messagespace/Messagespace";
+import { MessageProps } from "./featues/message/Message";
 
 const dialog: Dialog[] = [
   {
@@ -12,7 +13,7 @@ const dialog: Dialog[] = [
     dialogAttributes: {
       lastMessage: "Hello",
       lastMessageTime: "19:20",
-      countOfUnreadMesaages: 9,
+      countOfUnreadMesaages: 0,
     },
   },
   {
@@ -26,6 +27,15 @@ const dialog: Dialog[] = [
   },
 ];
 
+const messages: MessageProps[] = [
+  { userName: "Oleg Tinkov", text: "Hello", messageTime: "19:20" },
+  {
+    userName: "Oleg Tinkov",
+    text: "How are you?",
+    messageTime: "19:21",
+  },
+];
+
 const App = () => {
   return (
     <>
@@ -35,6 +45,7 @@ const App = () => {
         <Messagespace
           userName={dialog[1].username}
           messanger={dialog[1].messenger}
+          messages={messages}
         />
       </main>
     </>

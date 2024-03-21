@@ -2,7 +2,7 @@ import Avatar from "../avatar/Avatar";
 
 import "./Message.css";
 
-type MessageProps = {
+export type MessageProps = {
   userName: string;
   text: string;
   messageTime: string;
