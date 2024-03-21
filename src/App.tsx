@@ -27,7 +27,7 @@ const dialog: Dialog[] = [
   },
 ];
 
-let messages: MessageProps[] = [
+const messages: MessageProps[] = [
   {
     text: "How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?",
     messageTime: "19:22",
@@ -66,11 +66,6 @@ let messages: MessageProps[] = [
 ];
 
 const App = () => {
-  messages.push({
-    text: "PUSHED MESSAGE",
-    messageTime: "14:88",
-    isInter: false,
-  });
   return (
     <main className="main">
       <Navbar />
@@ -78,7 +73,7 @@ const App = () => {
       <Messagespace
         userName={dialog[1].username}
         messanger={dialog[1].messenger}
-        messages={messages}
+        messages={messages.reverse()}
       />
     </main>
   );
