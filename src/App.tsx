@@ -27,17 +27,7 @@ const dialog: Dialog[] = [
   },
 ];
 
-const messages: MessageProps[] = [
-  {
-    text: "First message",
-    messageTime: "19:20",
-    isInter: true,
-  },
-  {
-    text: "Second message",
-    messageTime: "19:21",
-    isInter: true,
-  },
+let messages: MessageProps[] = [
   {
     text: "How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?",
     messageTime: "19:22",
@@ -63,21 +53,34 @@ const messages: MessageProps[] = [
     messageTime: "4:201488228",
     isInter: false,
   },
+  {
+    text: "Second message",
+    messageTime: "19:21",
+    isInter: true,
+  },
+  {
+    text: "First message",
+    messageTime: "19:20",
+    isInter: true,
+  },
 ];
 
 const App = () => {
+  messages.push({
+    text: "PUSHED MESSAGE",
+    messageTime: "14:88",
+    isInter: false,
+  });
   return (
-    <>
-      <main className="main">
-        <Navbar />
-        <Spacebar title={"Base"} dialogList={dialog} />
-        <Messagespace
-          userName={dialog[1].username}
-          messanger={dialog[1].messenger}
-          messages={messages.reverse()}
-        />
-      </main>
-    </>
+    <main className="main">
+      <Navbar />
+      <Spacebar title={"Base"} dialogList={dialog} />
+      <Messagespace
+        userName={dialog[1].username}
+        messanger={dialog[1].messenger}
+        messages={messages}
+      />
+    </main>
   );
 };
 
