@@ -1,7 +1,7 @@
 import "./Avatar.css";
 
 type AvatarProps = {
-  name: string;
+  name?: string;
   messengerIcon: string | undefined;
   size: string;
 };
