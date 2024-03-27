@@ -40,8 +40,8 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   useEffect(() => {
     const interval = setInterval(() => {
       getMessages();
-    }, 1000)
-    return () => clearInterval(interval)
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(getMessages, []);
