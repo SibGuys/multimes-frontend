@@ -5,18 +5,73 @@ import Message, { MessageProps } from "src/featues/message/Message";
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
 import Avatar from "../../featues/avatar/Avatar";
+import { SetStateAction, useEffect, useState } from "react";
 
 type MessagespaceProps = {
   userName: string;
   messanger?: string;
-  messages: MessageProps[];
 };
 
-const Messagespace = ({ userName, messanger, messages }: MessagespaceProps) => {
+const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   const short_name = (name: string) => {
     return name.split(" ")[0][0] + name.split(" ")[1][0];
   };
 
+  const mesList: MessageProps[] = [];
+
+  let [messages, setMessages] = useState(mesList);
+
+  const getMessages = () => {
+    fetch("http://localhost:8080/messages", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response: MessageProps[]) => {
+        setMessages(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  useEffect(getMessages, []);
+
+  const [messageText, setMessage] = useState("");
+
+  const [rendererFlag, setRendererFlag] = useState(false);
+
+  const forceRerender = () => {
+    setRendererFlag(flag => !flag);
+  }
+
+  const handleMessageChange = (event: {
+    target: { value: SetStateAction<string> };
+  }) => {
+    setMessage(event.target.value);
+  };
+
+  const sendMessage = () => {
+    const mes: MessageProps = {
+      userName: "FRONT",
+      text: messageText,
+      messageTime: "1",
+      isInter: false,
+    };
+    fetch("http://localhost:8080/messages", {
+      method: "POST",
+      body: JSON.stringify(mes),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    messages.push(mes);
+    forceRerender()
+  };
+  
   return (
     <div className="chat">
       <div className="chat_header">
@@ -49,9 +104,11 @@ const Messagespace = ({ userName, messanger, messages }: MessagespaceProps) => {
           type="text"
           name="Message-input"
           id="0"
+          onChange={handleMessageChange}
+          value={messageText}
           placeholder="Message..."
         />
-        <span className="chat-input_send">
+        <span className="chat-input_send" onClick={sendMessage}>
           <img src={send} alt="send message icon" />
         </span>
       </div>

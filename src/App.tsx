@@ -27,44 +27,6 @@ const dialog: Dialog[] = [
   },
 ];
 
-const messages: MessageProps[] = [
-  {
-    text: "How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?How are you?",
-    messageTime: "19:22",
-    isInter: true,
-  },
-  {
-    text: "Fourth message",
-    messageTime: "4:20",
-    isInter: true,
-  },
-  {
-    text: "Fifth message",
-    messageTime: "4:21",
-    isInter: false,
-  },
-  {
-    text: "Sixth message",
-    messageTime: "4:22",
-    isInter: true,
-  },
-  {
-    text: "Perpetum mobile",
-    messageTime: "4:201488228",
-    isInter: false,
-  },
-  {
-    text: "Second message",
-    messageTime: "19:21",
-    isInter: true,
-  },
-  {
-    text: "First message",
-    messageTime: "19:20",
-    isInter: true,
-  },
-];
-
 const App = () => {
   return (
     <main className="main">
@@ -73,7 +35,6 @@ const App = () => {
       <Messagespace
         userName={dialog[1].username}
         messanger={dialog[1].messenger}
-        messages={messages.reverse()}
       />
     </main>
   );
