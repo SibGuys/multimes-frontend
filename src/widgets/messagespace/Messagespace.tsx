@@ -37,6 +37,13 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       });
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getMessages();
+    }, 1000)
+    return () => clearInterval(interval)
+  }, []);
+
   useEffect(getMessages, []);
 
   const [messageText, setMessage] = useState("");
@@ -44,8 +51,8 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   const [rendererFlag, setRendererFlag] = useState(false);
 
   const forceRerender = () => {
-    setRendererFlag(flag => !flag);
-  }
+    setRendererFlag((flag) => !flag);
+  };
 
   const handleMessageChange = (event: {
     target: { value: SetStateAction<string> };
@@ -69,9 +76,9 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       },
     });
     messages.push(mes);
-    forceRerender()
+    forceRerender();
   };
-  
+
   return (
     <div className="chat">
       <div className="chat_header">
