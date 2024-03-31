@@ -1,3 +1,4 @@
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 
 import Dialog from "./entities/dialog/Dialog";
@@ -29,14 +30,16 @@ const dialog: Dialog[] = [
 
 const App = () => {
   return (
-    <main className="main">
-      <Navbar />
-      <Spacebar title={"Base"} dialogList={dialog} />
-      <Messagespace
-        userName={dialog[1].username}
-        messanger={dialog[1].messenger}
-      />
-    </main>
+    <BrowserRouter>
+      <main className="main">
+        <Navbar />
+        <Spacebar title={"Base"} dialogList={dialog} />
+        <Messagespace
+          userName={dialog[1].username}
+          messanger={dialog[1].messenger}
+        />
+      </main>
+    </BrowserRouter>
   );
 };
 
