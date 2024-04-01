@@ -1,11 +1,11 @@
 import "./Messagespace.css";
 
+import { SetStateAction, useEffect, useState } from "react";
 import Message, { MessageProps } from "src/featues/message/Message";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
 import Avatar from "../../featues/avatar/Avatar";
-import { SetStateAction, useEffect, useState } from "react";
 
 type MessagespaceProps = {
   userName: string;
@@ -19,7 +19,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
 
   const mesList: MessageProps[] = [];
 
-  let [messages, setMessages] = useState(mesList);
+  const [messages, setMessages] = useState(mesList);
 
   const getMessages = () => {
     fetch("http://localhost:8080/messages", {
@@ -61,22 +61,31 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   };
 
   const sendMessage = () => {
-    const mes: MessageProps = {
-      userName: "FRONT",
-      text: messageText,
-      messageTime: "1",
-      isInter: false,
-    };
-    fetch("http://localhost:8080/messages", {
-      method: "POST",
-      body: JSON.stringify(mes),
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    messages.push(mes);
+    if (messageText !== "") {
+      const mes: MessageProps = {
+        userName: "FRONT",
+        text: messageText,
+        messageTime: "",
+        isInter: false,
+      };
+      fetch("http://localhost:8080/messages", {
+        method: "POST",
+        body: JSON.stringify(mes),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      messages.push(mes);
+    }
+    setMessage("");
     forceRerender();
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
   };
 
   return (
@@ -98,7 +107,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
         {messages.map((message) => (
           <Message
             key={message.messageTime}
-            userName={userName}
+            userName={message.userName}
             text={message.text}
             messageTime={message.messageTime}
             isInter={message.isInter}
@@ -114,6 +123,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
           onChange={handleMessageChange}
           value={messageText}
           placeholder="Message..."
+          onKeyDown={handleKeyDown}
         />
         <span className="chat-input_send" onClick={sendMessage}>
           <img src={send} alt="send message icon" />
