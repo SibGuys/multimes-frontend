@@ -1,6 +1,6 @@
 import "./Messagespace.css";
 
-import { SetStateAction, useEffect, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import Message, { MessageProps } from "src/featues/message/Message";
 
 import logo from "../../assets/svg/icon-logo.svg";
@@ -37,14 +37,23 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       });
   };
 
+  const messagesEndRef = useRef<null | HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (messages.length) {
+      messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+      });
+    }
+  }, [messages.length]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       getMessages();
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  useEffect(getMessages, []);
 
   const [messageText, setMessage] = useState("");
 
@@ -85,6 +94,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       sendMessage();
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -113,6 +123,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
             isInter={message.isInter}
           />
         ))}
+        <div ref={messagesEndRef} />
       </div>
       <div className="chat-input">
         <input
