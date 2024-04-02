@@ -13,8 +13,8 @@ const dialog: Dialog[] = [
     username: "All-in One",
     dialogAttributes: {
       lastMessage: "",
-      lastMessageTime: "7:bits",
-      countOfUnreadMesaages: 7,
+      lastMessageTime: "",
+      countOfUnreadMesaages: undefined,
     },
   },
 ];
