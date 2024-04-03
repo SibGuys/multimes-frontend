@@ -70,11 +70,14 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   };
 
   const sendMessage = () => {
+    let d = new Date();
+    var datestring =
+      ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
     if (messageText !== "") {
       const mes: MessageProps = {
         userName: "FRONT",
         text: messageText,
-        messageTime: "",
+        messageTime: datestring,
         isInter: false,
       };
       fetch("http://localhost:8080/messages", {
