@@ -10,9 +10,11 @@ export type MessageProps = {
 };
 
 const Message = ({ userName, text, messageTime, isInter }: MessageProps) => {
-  const short_name = (name?: string) => {
-    if (name != undefined) {
+  const short_name = (name: string) => {
+    if (name.split(" ").length > 2) {
       return name.split(" ")[0][0] + name.split(" ")[1][0];
+    } else {
+      return name.split(" ")[0][0];
     }
   };
 
@@ -20,7 +22,7 @@ const Message = ({ userName, text, messageTime, isInter }: MessageProps) => {
     <div className={isInter ? "message__left-side" : "message__right-side"}>
       {isInter ? (
         <>
-          <Avatar name={short_name(userName)} messengerIcon="" size="small" />
+          <Avatar name={short_name(userName!)} messengerIcon="" size="small" />
           <p className="message_user-name">{userName}</p>
         </>
       ) : (
