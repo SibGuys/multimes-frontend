@@ -1,7 +1,7 @@
 import "./Messagespace.css";
 
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import Message, { MessageProps } from "src/featues/message/Message";
+import Message from "src/featues/message/Message";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
@@ -12,7 +12,14 @@ type MessagespaceProps = {
   messanger?: string;
 };
 
+type MessageFromBack = {
+  text: string;
+  time: string;
+  isInter: boolean;
+};
+
 const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
+  let i = 0;
   const short_name = (name: string) => {
     if (name.split(" ").length > 2) {
       return name.split(" ")[0][0] + name.split(" ")[1][0];
@@ -21,19 +28,19 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
     }
   };
 
-  const mesList: MessageProps[] = [];
+  const mesList: MessageFromBack[] = [];
 
   const [messages, setMessages] = useState(mesList);
 
   const getMessages = () => {
-    fetch("http://localhost:8080/messages", {
+    fetch(`http://localhost:8080/messages?id=${1}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
       },
     })
       .then((response) => response.json())
-      .then((response: MessageProps[]) => {
+      .then((response: MessageFromBack[]) => {
         setMessages(response);
       })
       .catch((error) => {
@@ -74,15 +81,10 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   };
 
   const sendMessage = () => {
-    let d = new Date();
-    var datestring =
-      ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
     if (messageText !== "") {
-      const mes: MessageProps = {
-        userName: "FRONT",
+      const mes = {
         text: messageText,
-        messageTime: datestring,
-        isInter: false,
+        dialogId: 1,
       };
       fetch("http://localhost:8080/messages", {
         method: "POST",
@@ -92,7 +94,6 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
           Accept: "application/json",
         },
       });
-      messages.push(mes);
     }
     setMessage("");
     forceRerender();
@@ -123,10 +124,10 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       <div className="chat_messages">
         {messages.map((message) => (
           <Message
-            key={message.messageTime}
-            userName={message.userName}
+            key={message.time + ++i}
+            userName={userName}
             text={message.text}
-            messageTime={message.messageTime}
+            messageTime={message.time}
             isInter={message.isInter}
           />
         ))}
