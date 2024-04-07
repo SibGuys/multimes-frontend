@@ -1,7 +1,7 @@
 import "./Messagespace.css";
 
 import { SetStateAction, useEffect, useRef, useState } from "react";
-import Message, { MessageProps } from "src/featues/message/Message";
+import Message from "src/featues/message/Message";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
@@ -80,9 +80,6 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   };
 
   const sendMessage = () => {
-    let d = new Date();
-    var datestring =
-      ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
     if (messageText !== "") {
       const mes = {
         text: messageText,
