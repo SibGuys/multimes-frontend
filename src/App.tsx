@@ -15,11 +15,9 @@ type DialogFromBackend = {
 };
 
 const App = () => {
-  const dialogFromBackendList: DialogFromBackend[] = [];
   const dialogList: Dialog[] = [];
 
-  const [dialogs, setDialogs] = useState(dialogFromBackendList);
-  const [dialogsProp, setDialogProp] = useState(dialogList);
+  const [dialogs, setDialogs] = useState(dialogList);
 
   const getDialogs = () => {
     fetch(`http://localhost:8080/dialogs`, {
@@ -31,34 +29,31 @@ const App = () => {
       .then((response) => response.json())
       .then((response: DialogFromBackend[]) => {
         console.log(response);
-        setDialogs(response);
+        setDialogs(
+          response.map((r) => {
+            return {
+              username: r.fullName,
+              messenger: r.messengerType,
+              dialogAttributes: dialogAttributes,
+            };
+          }),
+        );
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
+  const dialogAttributes = {
+    lastMessage: "",
+    lastMessageTime: "",
+    countOfUnreadMesaages: undefined,
+  };
+
   useEffect(() => {
-    const dialogAttributes = {
-      lastMessage: "",
-      lastMessageTime: "",
-      countOfUnreadMesaages: undefined,
-    };
-    const dialogsToProps = () => {
-      const result: Dialog[] = [];
-      dialogs.forEach((dialog) => {
-        result.push({
-          username: dialog.fullName,
-          messenger: dialog.messengerType,
-          dialogAttributes: dialogAttributes,
-        });
-      });
-      return result;
-    };
     const interval = setInterval(() => {
       getDialogs();
-      setDialogProp(dialogsToProps());
-    }, 1000);
+    });
     return () => clearInterval(interval);
   }, []);
 
@@ -66,11 +61,11 @@ const App = () => {
     <BrowserRouter>
       <main className="main">
         <Navbar />
-        <Spacebar title={"Base"} dialogList={dialogsProp} />
+        <Spacebar title={"Base"} dialogList={dialogs} />
         <></>
         <Messagespace
-          userName={dialogsProp.length > 0 ? dialogsProp[0].username : "empty"}
-          messanger={dialogsProp.length > 0 ? dialogsProp[0].messenger : "vk"}
+          userName={dialogs.length > 0 ? dialogs[0].username : "empty"}
+          messanger={dialogs.length > 0 ? dialogs[0].messenger : "vk"}
         />
       </main>
     </BrowserRouter>
