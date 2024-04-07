@@ -28,7 +28,6 @@ const App = () => {
     })
       .then((response) => response.json())
       .then((response: DialogFromBackend[]) => {
-        console.log(response);
         setDialogs(
           response.map((r) => {
             return {

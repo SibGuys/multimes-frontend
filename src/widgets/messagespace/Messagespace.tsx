@@ -19,6 +19,7 @@ type MessageFromBack = {
 };
 
 const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
+  let i = 0;
   const short_name = (name: string) => {
     if (name.split(" ").length > 2) {
       return name.split(" ")[0][0] + name.split(" ")[1][0];
@@ -123,7 +124,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       <div className="chat_messages">
         {messages.map((message) => (
           <Message
-            key={message.time}
+            key={message.time + ++i}
             userName={userName}
             text={message.text}
             messageTime={message.time}
