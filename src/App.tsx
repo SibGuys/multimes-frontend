@@ -7,6 +7,8 @@ import Dialog from "./entities/dialog/Dialog";
 import Messagespace from "./widgets/messagespace/Messagespace";
 import Navbar from "./widgets/navbar/Navbar";
 import Spacebar from "./widgets/spacebar/Spacebar";
+import { Provider } from "react-redux";
+import { store } from "./shared/ui/space/store/store";
 
 type DialogFromBackend = {
   dialogId: number;
@@ -57,17 +59,19 @@ const App = () => {
   }, []);
 
   return (
-    <BrowserRouter>
-      <main className="main">
-        <Navbar />
-        <Spacebar title={"Base"} dialogList={dialogs} />
-        <></>
-        <Messagespace
-          userName={dialogs.length > 0 ? dialogs[0].username : "empty"}
-          messanger={dialogs.length > 0 ? dialogs[0].messenger : "vk"}
-        />
-      </main>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <main className="main">
+          <Navbar />
+          <Spacebar title={"Base"} dialogList={dialogs} />
+          <></>
+          <Messagespace
+            userName={dialogs.length > 0 ? dialogs[0].username : "empty"}
+            messanger={dialogs.length > 0 ? dialogs[0].messenger : "vk"}
+          />
+        </main>
+      </BrowserRouter>
+    </Provider>
   );
 };
 

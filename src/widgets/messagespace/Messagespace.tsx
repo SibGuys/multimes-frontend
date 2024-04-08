@@ -6,16 +6,21 @@ import Message from "src/featues/message/Message";
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
 import Avatar from "../../featues/avatar/Avatar";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "src/shared/ui/space/store/hooks";
+import {
+  MessageToBack,
+  getMessages,
+  selectMessages,
+  selectStatus,
+  sendMessage,
+} from "./messagesSlice";
 
 type MessagespaceProps = {
   userName: string;
   messanger?: string;
-};
-
-type MessageFromBack = {
-  text: string;
-  time: string;
-  isInter: boolean;
 };
 
 const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
@@ -28,25 +33,9 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
     }
   };
 
-  const mesList: MessageFromBack[] = [];
-
-  const [messages, setMessages] = useState(mesList);
-
-  const getMessages = () => {
-    fetch(`http://localhost:8080/messages?id=${1}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response: MessageFromBack[]) => {
-        setMessages(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  const dispatch = useAppDispatch();
+  const messages = useAppSelector(selectMessages);
+  const status = useAppSelector(selectStatus);
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -61,18 +50,12 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      getMessages();
+      dispatch(getMessages(1));
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
   const [messageText, setMessage] = useState("");
-
-  const [rendererFlag, setRendererFlag] = useState(false);
-
-  const forceRerender = () => {
-    setRendererFlag((flag) => !flag);
-  };
 
   const handleMessageChange = (event: {
     target: { value: SetStateAction<string> };
@@ -80,29 +63,21 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
     setMessage(event.target.value);
   };
 
-  const sendMessage = () => {
+  const sendMessageLambda = () => {
     if (messageText !== "") {
-      const mes = {
+      const mes: MessageToBack = {
         text: messageText,
         dialogId: 1,
       };
-      fetch("http://localhost:8080/messages", {
-        method: "POST",
-        body: JSON.stringify(mes),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
+      console.log(mes);
+      dispatch(sendMessage(mes));
     }
     setMessage("");
-    forceRerender();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      sendMessage();
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      sendMessageLambda();
     }
   };
 
@@ -144,7 +119,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
           placeholder="Message..."
           onKeyDown={handleKeyDown}
         />
-        <span className="chat-input_send" onClick={sendMessage}>
+        <span className="chat-input_send" onClick={sendMessageLambda}>
           <img src={send} alt="send message icon" />
         </span>
       </div>
