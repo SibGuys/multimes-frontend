@@ -1,6 +1,4 @@
-import {
-  selectCurrentDialog,
-} from "src/shared/store/slices/currentDialogSlice";
+import { selectCurrentDialog } from "src/shared/store/slices/currentDialogSlice";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "src/shared/store/hooks";
 import {
@@ -29,10 +27,7 @@ const Main = () => {
     <main className="main">
       <Navbar />
       <Spacebar title={"Base"} dialogList={dialogs} />
-      <Messagespace
-        userName={"empty"}
-        messanger={"vk"}
-      />
+      <Messagespace userName={"empty"} messanger={"vk"} />
     </main>
   );
 };

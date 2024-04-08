@@ -28,20 +28,16 @@ export const currentDialogSlice = createAppSlice({
   initialState,
   reducers: (create) => ({
     setCurrentDialog: create.reducer((state, action: PayloadAction<Dialog>) => {
-      console.log(action.payload);
-
-      state.value = {
-        ...action.payload,
-      };
+      return { ...state, value: action.payload };
     }),
   }),
   selectors: {
     selectCurrentDialog: (currentDialog) => currentDialog.value,
-    selectStatus: (currentDialog) => currentDialog.status,
+    selectCurrentDialogStatus: (currentDialog) => currentDialog.status,
   },
 });
 
 export const { setCurrentDialog } = currentDialogSlice.actions;
 
-export const { selectCurrentDialog, selectStatus } =
+export const { selectCurrentDialog, selectCurrentDialogStatus } =
   currentDialogSlice.selectors;

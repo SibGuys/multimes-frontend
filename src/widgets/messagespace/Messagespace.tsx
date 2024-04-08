@@ -15,9 +15,7 @@ import {
   selectStatus,
   sendMessage,
 } from "../../shared/store/slices/messagesSlice";
-import {
-  selectCurrentDialog,
-} from "src/shared/store/slices/currentDialogSlice";
+import { selectCurrentDialog, selectCurrentDialogStatus } from "src/shared/store/slices/currentDialogSlice";
 
 type MessagespaceProps = {
   userName: string;
@@ -32,6 +30,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   const status = useAppSelector(selectStatus);
 
   const currentDialog = useAppSelector(selectCurrentDialog);
+  const currentDialogStatus = useAppSelector(selectCurrentDialogStatus);
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -46,11 +45,10 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      console.log(currentDialog);
       dispatch(getMessages(currentDialog.dialogId));
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentDialog]);
 
   const [messageText, setMessage] = useState("");
 
