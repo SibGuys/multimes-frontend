@@ -1,4 +1,4 @@
-import { createAppSlice } from "@/shared/store/createAppSlice";
+import { createAppSlice } from "../createAppSlice";
 
 export type Message = {
   text: string;
@@ -21,7 +21,7 @@ const initialState: MessageSliceState = {
   status: "idle",
 };
 
-export const messageSlice = createAppSlice({
+export const messagesSlice = createAppSlice({
   name: "messages",
   initialState,
   reducers: (create) => ({
@@ -76,6 +76,6 @@ export const messageSlice = createAppSlice({
   },
 });
 
-export const { getMessages, sendMessage } = messageSlice.actions;
+export const { getMessages, sendMessage } = messagesSlice.actions;
 
-export const { selectMessages, selectStatus } = messageSlice.selectors;
+export const { selectMessages, selectStatus } = messagesSlice.selectors;

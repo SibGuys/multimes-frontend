@@ -3,8 +3,7 @@ import "./Messagespace.css";
 import { SetStateAction, useEffect, useRef, useState } from "react";
 import Message from "src/featues/message/Message";
 import { short_name } from "src/shared/shortName";
-
-import { useAppDispatch, useAppSelector } from "@/shared/store/hooks";
+import { useAppDispatch, useAppSelector } from "src/shared/store/hooks";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
@@ -15,7 +14,7 @@ import {
   selectMessages,
   selectStatus,
   sendMessage,
-} from "./messagesSlice";
+} from "../../shared/store/slices/messagesSlice";
 
 type MessagespaceProps = {
   userName: string;

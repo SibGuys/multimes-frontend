@@ -5,9 +5,11 @@ import {
   ThunkAction,
 } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { messageSlice } from "src/widgets/messagespace/messagesSlice";
 
-const rootReducer = combineSlices(messageSlice);
+import { dialogsSlice } from "./slices/dialogsSlice";
+import { messagesSlice } from "./slices/messagesSlice";
+
+const rootReducer = combineSlices(dialogsSlice, messagesSlice);
 
 export type RootState = ReturnType<typeof rootReducer>;
 
