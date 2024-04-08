@@ -4,6 +4,11 @@ import searchParamSvg from "src/assets/svg/icon-param.svg";
 import searchSvg from "src/assets/svg/icon-search.svg";
 import settingsSvg from "src/assets/svg/icon-settings.svg";
 import Dialog from "src/entities/dialog/Dialog";
+import { short_name } from "src/shared/shortName";
+import { useAppDispatch } from "src/shared/store/hooks";
+import {
+  setCurrentDialog,
+} from "src/shared/store/slices/currentDialogSlice";
 
 import Avatar from "../../featues/avatar/Avatar";
 
@@ -13,10 +18,7 @@ export type SpacebarProps = {
 };
 
 const Spacebar = ({ title, dialogList }: SpacebarProps) => {
-  const short_name = (name: string) => {
-    return name.split(" ")[0][0] + name.split(" ")[1][0];
-  };
-
+  const dispatch = useAppDispatch();
   return (
     <section className="spacebar">
       <header className="spacebar__header">
@@ -41,7 +43,13 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
       </header>
       <main className="spacebar__main">
         {dialogList.map((dialog) => (
-          <div key={dialog.username} className="dialog">
+          <div
+            key={dialog.username}
+            className="dialog"
+            onClick={() => {
+              dispatch(setCurrentDialog(dialog));
+            }}
+          >
             <Avatar
               name={short_name(dialog.username)}
               messengerIcon={dialog.messenger}

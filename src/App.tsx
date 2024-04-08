@@ -1,73 +1,18 @@
 import "./App.css";
 
-import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
-import Dialog from "./entities/dialog/Dialog";
-import Messagespace from "./widgets/messagespace/Messagespace";
-import Navbar from "./widgets/navbar/Navbar";
-import Spacebar from "./widgets/spacebar/Spacebar";
-
-type DialogFromBackend = {
-  dialogId: number;
-  fullName: string;
-  messengerType: string;
-};
+import Main from "./app/Main";
+import { store } from "./shared/store/store";
 
 const App = () => {
-  const dialogList: Dialog[] = [];
-
-  const [dialogs, setDialogs] = useState(dialogList);
-
-  const getDialogs = () => {
-    fetch(`http://localhost:8080/dialogs`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response: DialogFromBackend[]) => {
-        setDialogs(
-          response.map((r) => {
-            return {
-              username: r.fullName,
-              messenger: r.messengerType,
-              dialogAttributes: dialogAttributes,
-            };
-          }),
-        );
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const dialogAttributes = {
-    lastMessage: "",
-    lastMessageTime: "",
-    countOfUnreadMesaages: undefined,
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getDialogs();
-    });
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <BrowserRouter>
-      <main className="main">
-        <Navbar />
-        <Spacebar title={"Base"} dialogList={dialogs} />
-        <></>
-        <Messagespace
-          userName={dialogs.length > 0 ? dialogs[0].username : "empty"}
-          messanger={dialogs.length > 0 ? dialogs[0].messenger : "vk"}
-        />
-      </main>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    </Provider>
   );
 };
 

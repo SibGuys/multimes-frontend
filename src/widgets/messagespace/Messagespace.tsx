@@ -2,51 +2,29 @@ import "./Messagespace.css";
 
 import { SetStateAction, useEffect, useRef, useState } from "react";
 import Message from "src/featues/message/Message";
+import { short_name } from "src/shared/shortName";
+import { useAppDispatch, useAppSelector } from "src/shared/store/hooks";
+import {
+  selectCurrentDialog,
+} from "src/shared/store/slices/currentDialogSlice";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
 import Avatar from "../../featues/avatar/Avatar";
+import {
+  getMessages,
+  MessageToBack,
+  selectMessages,
+  sendMessage,
+} from "../../shared/store/slices/messagesSlice";
 
-type MessagespaceProps = {
-  userName: string;
-  messanger?: string;
-};
-
-type MessageFromBack = {
-  text: string;
-  time: string;
-  isInter: boolean;
-};
-
-const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
+const Messagespace = () => {
   let i = 0;
-  const short_name = (name: string) => {
-    if (name.split(" ").length > 2) {
-      return name.split(" ")[0][0] + name.split(" ")[1][0];
-    } else {
-      return name.split(" ")[0][0];
-    }
-  };
 
-  const mesList: MessageFromBack[] = [];
+  const dispatch = useAppDispatch();
+  const messages = useAppSelector(selectMessages);
 
-  const [messages, setMessages] = useState(mesList);
-
-  const getMessages = () => {
-    fetch(`http://localhost:8080/messages?id=${1}`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response: MessageFromBack[]) => {
-        setMessages(response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  const currentDialog = useAppSelector(selectCurrentDialog);
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -61,18 +39,12 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      getMessages();
+      dispatch(getMessages(currentDialog.dialogId));
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [dispatch, currentDialog]);
 
   const [messageText, setMessage] = useState("");
-
-  const [rendererFlag, setRendererFlag] = useState(false);
-
-  const forceRerender = () => {
-    setRendererFlag((flag) => !flag);
-  };
 
   const handleMessageChange = (event: {
     target: { value: SetStateAction<string> };
@@ -80,29 +52,20 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
     setMessage(event.target.value);
   };
 
-  const sendMessage = () => {
+  const sendMessageLambda = () => {
     if (messageText !== "") {
-      const mes = {
+      const mes: MessageToBack = {
         text: messageText,
-        dialogId: 1,
+        dialogId: currentDialog.dialogId,
       };
-      fetch("http://localhost:8080/messages", {
-        method: "POST",
-        body: JSON.stringify(mes),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-      });
+      dispatch(sendMessage(mes));
     }
     setMessage("");
-    forceRerender();
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      sendMessage();
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      sendMessageLambda();
     }
   };
 
@@ -111,11 +74,11 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       <div className="chat_header">
         <div className="user">
           <Avatar
-            name={short_name(userName)}
-            messengerIcon={messanger}
+            name={short_name(currentDialog.username)}
+            messengerIcon={currentDialog.messenger}
             size="small"
           />
-          <p className="user-name">{userName}</p>
+          <p className="user-name">{currentDialog.username}</p>
         </div>
         <a href="#link">
           <img src={logo} alt="logo Multimes" />
@@ -125,7 +88,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
         {messages.map((message) => (
           <Message
             key={message.time + ++i}
-            userName={userName}
+            userName={currentDialog.username}
             text={message.text}
             messageTime={message.time}
             isInter={message.isInter}
@@ -144,7 +107,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
           placeholder="Message..."
           onKeyDown={handleKeyDown}
         />
-        <span className="chat-input_send" onClick={sendMessage}>
+        <span className="chat-input_send" onClick={sendMessageLambda}>
           <img src={send} alt="send message icon" />
         </span>
       </div>
