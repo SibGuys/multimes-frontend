@@ -6,9 +6,9 @@ import {
 } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
+import { currentDialogSlice } from "./slices/currentDialogSlice";
 import { dialogsSlice } from "./slices/dialogsSlice";
 import { messagesSlice } from "./slices/messagesSlice";
-import { currentDialogSlice } from "./slices/currentDialogSlice";
 
 const rootReducer = combineSlices(
   dialogsSlice,

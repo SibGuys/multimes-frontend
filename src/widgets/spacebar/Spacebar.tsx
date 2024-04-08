@@ -5,13 +5,12 @@ import searchSvg from "src/assets/svg/icon-search.svg";
 import settingsSvg from "src/assets/svg/icon-settings.svg";
 import Dialog from "src/entities/dialog/Dialog";
 import { short_name } from "src/shared/shortName";
-
-import Avatar from "../../featues/avatar/Avatar";
+import { useAppDispatch } from "src/shared/store/hooks";
 import {
-  selectCurrentDialog,
   setCurrentDialog,
 } from "src/shared/store/slices/currentDialogSlice";
-import { useAppDispatch, useAppSelector } from "src/shared/store/hooks";
+
+import Avatar from "../../featues/avatar/Avatar";
 
 export type SpacebarProps = {
   title?: string;
@@ -20,7 +19,6 @@ export type SpacebarProps = {
 
 const Spacebar = ({ title, dialogList }: SpacebarProps) => {
   const dispatch = useAppDispatch();
-  const currentDialog = useAppSelector(selectCurrentDialog);
   return (
     <section className="spacebar">
       <header className="spacebar__header">

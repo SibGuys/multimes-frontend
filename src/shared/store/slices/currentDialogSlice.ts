@@ -1,6 +1,7 @@
-import Dialog from "src/entities/dialog/Dialog";
-import { createAppSlice } from "../createAppSlice";
 import { PayloadAction } from "@reduxjs/toolkit";
+import Dialog from "src/entities/dialog/Dialog";
+
+import { createAppSlice } from "../createAppSlice";
 
 type CurrentDialogSliceState = {
   value: Dialog;

@@ -4,6 +4,9 @@ import { SetStateAction, useEffect, useRef, useState } from "react";
 import Message from "src/featues/message/Message";
 import { short_name } from "src/shared/shortName";
 import { useAppDispatch, useAppSelector } from "src/shared/store/hooks";
+import {
+  selectCurrentDialog,
+} from "src/shared/store/slices/currentDialogSlice";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
@@ -12,25 +15,16 @@ import {
   getMessages,
   MessageToBack,
   selectMessages,
-  selectStatus,
   sendMessage,
 } from "../../shared/store/slices/messagesSlice";
-import { selectCurrentDialog, selectCurrentDialogStatus } from "src/shared/store/slices/currentDialogSlice";
 
-type MessagespaceProps = {
-  userName: string;
-  messanger?: string;
-};
-
-const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
+const Messagespace = () => {
   let i = 0;
 
   const dispatch = useAppDispatch();
   const messages = useAppSelector(selectMessages);
-  const status = useAppSelector(selectStatus);
 
   const currentDialog = useAppSelector(selectCurrentDialog);
-  const currentDialogStatus = useAppSelector(selectCurrentDialogStatus);
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -48,7 +42,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       dispatch(getMessages(currentDialog.dialogId));
     }, 1000);
     return () => clearInterval(interval);
-  }, [currentDialog]);
+  }, [dispatch, currentDialog]);
 
   const [messageText, setMessage] = useState("");
 
