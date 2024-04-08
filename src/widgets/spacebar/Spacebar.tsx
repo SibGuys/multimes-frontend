@@ -7,6 +7,11 @@ import Dialog from "src/entities/dialog/Dialog";
 import { short_name } from "src/shared/shortName";
 
 import Avatar from "../../featues/avatar/Avatar";
+import {
+  selectCurrentDialog,
+  setCurrentDialog,
+} from "src/shared/store/slices/currentDialogSlice";
+import { useAppDispatch, useAppSelector } from "src/shared/store/hooks";
 
 export type SpacebarProps = {
   title?: string;
@@ -14,6 +19,8 @@ export type SpacebarProps = {
 };
 
 const Spacebar = ({ title, dialogList }: SpacebarProps) => {
+  const dispatch = useAppDispatch();
+  const currentDialog = useAppSelector(selectCurrentDialog);
   return (
     <section className="spacebar">
       <header className="spacebar__header">
@@ -38,7 +45,13 @@ const Spacebar = ({ title, dialogList }: SpacebarProps) => {
       </header>
       <main className="spacebar__main">
         {dialogList.map((dialog) => (
-          <div key={dialog.username} className="dialog">
+          <div
+            key={dialog.username}
+            className="dialog"
+            onClick={() => {
+              dispatch(setCurrentDialog(dialog));
+            }}
+          >
             <Avatar
               name={short_name(dialog.username)}
               messengerIcon={dialog.messenger}

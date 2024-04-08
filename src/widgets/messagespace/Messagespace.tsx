@@ -15,6 +15,9 @@ import {
   selectStatus,
   sendMessage,
 } from "../../shared/store/slices/messagesSlice";
+import {
+  selectCurrentDialog,
+} from "src/shared/store/slices/currentDialogSlice";
 
 type MessagespaceProps = {
   userName: string;
@@ -27,6 +30,8 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   const dispatch = useAppDispatch();
   const messages = useAppSelector(selectMessages);
   const status = useAppSelector(selectStatus);
+
+  const currentDialog = useAppSelector(selectCurrentDialog);
 
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
@@ -41,7 +46,8 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      dispatch(getMessages(1));
+      console.log(currentDialog);
+      dispatch(getMessages(currentDialog.dialogId));
     }, 1000);
     return () => clearInterval(interval);
   }, []);
@@ -58,9 +64,8 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
     if (messageText !== "") {
       const mes: MessageToBack = {
         text: messageText,
-        dialogId: 1,
+        dialogId: currentDialog.dialogId,
       };
-      console.log(mes);
       dispatch(sendMessage(mes));
     }
     setMessage("");
@@ -77,11 +82,11 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
       <div className="chat_header">
         <div className="user">
           <Avatar
-            name={short_name(userName)}
-            messengerIcon={messanger}
+            name={short_name(currentDialog.username)}
+            messengerIcon={currentDialog.messenger}
             size="small"
           />
-          <p className="user-name">{userName}</p>
+          <p className="user-name">{currentDialog.username}</p>
         </div>
         <a href="#link">
           <img src={logo} alt="logo Multimes" />
@@ -91,7 +96,7 @@ const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
         {messages.map((message) => (
           <Message
             key={message.time + ++i}
-            userName={userName}
+            userName={currentDialog.username}
             text={message.text}
             messageTime={message.time}
             isInter={message.isInter}

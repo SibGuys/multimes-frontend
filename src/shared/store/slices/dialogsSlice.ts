@@ -27,6 +27,7 @@ const dialogAttributes = {
 const extractDialogs = (response: DialogFromBackend[]) => {
   return response.map((r) => {
     return {
+      dialogId: r.dialogId,
       username: r.fullName,
       messenger: r.messengerType,
       dialogAttributes: dialogAttributes,
@@ -64,10 +65,10 @@ export const dialogsSlice = createAppSlice({
   }),
   selectors: {
     selectDialogs: (dialogs) => dialogs.value,
-    selectStatus: (dialogs) => dialogs.status,
+    selectDialogsStatus: (dialogs) => dialogs.status,
   },
 });
 
 export const { getDialogs } = dialogsSlice.actions;
 
-export const { selectDialogs, selectStatus } = dialogsSlice.selectors;
+export const { selectDialogs, selectDialogsStatus } = dialogsSlice.selectors;

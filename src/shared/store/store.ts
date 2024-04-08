@@ -8,8 +8,13 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { dialogsSlice } from "./slices/dialogsSlice";
 import { messagesSlice } from "./slices/messagesSlice";
+import { currentDialogSlice } from "./slices/currentDialogSlice";
 
-const rootReducer = combineSlices(dialogsSlice, messagesSlice);
+const rootReducer = combineSlices(
+  dialogsSlice,
+  currentDialogSlice,
+  messagesSlice,
+);
 
 export type RootState = ReturnType<typeof rootReducer>;
 
