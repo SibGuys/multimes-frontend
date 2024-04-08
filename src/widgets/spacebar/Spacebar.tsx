@@ -14,7 +14,11 @@ export type SpacebarProps = {
 
 const Spacebar = ({ title, dialogList }: SpacebarProps) => {
   const short_name = (name: string) => {
-    return name.split(" ")[0][0] + name.split(" ")[1][0];
+    if (name.split(" ").length > 2) {
+      return name.split(" ")[0][0] + name.split(" ")[1][0];
+    } else {
+      return name.split(" ")[0][0];
+    }
   };
 
   return (
