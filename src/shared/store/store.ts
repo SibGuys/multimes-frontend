@@ -1,11 +1,11 @@
-import { messageSlice } from "src/widgets/messagespace/messagesSlice";
 import {
   Action,
-  ThunkAction,
   combineSlices,
   configureStore,
+  ThunkAction,
 } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
+import { messageSlice } from "src/widgets/messagespace/messagesSlice";
 
 const rootReducer = combineSlices(messageSlice);
 

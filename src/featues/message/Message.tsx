@@ -1,5 +1,7 @@
 import "./Message.css";
 
+import { short_name } from "src/shared/shortName";
+
 import Avatar from "../avatar/Avatar";
 
 export type MessageProps = {
@@ -10,14 +12,6 @@ export type MessageProps = {
 };
 
 const Message = ({ userName, text, messageTime, isInter }: MessageProps) => {
-  const short_name = (name: string) => {
-    if (name.split(" ").length > 2) {
-      return name.split(" ")[0][0] + name.split(" ")[1][0];
-    } else {
-      return name.split(" ")[0][0];
-    }
-  };
-
   return (
     <div className={isInter ? "message__left-side" : "message__right-side"}>
       {isInter ? (

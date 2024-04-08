@@ -4,6 +4,7 @@ import searchParamSvg from "src/assets/svg/icon-param.svg";
 import searchSvg from "src/assets/svg/icon-search.svg";
 import settingsSvg from "src/assets/svg/icon-settings.svg";
 import Dialog from "src/entities/dialog/Dialog";
+import { short_name } from "src/shared/shortName";
 
 import Avatar from "../../featues/avatar/Avatar";
 
@@ -13,14 +14,6 @@ export type SpacebarProps = {
 };
 
 const Spacebar = ({ title, dialogList }: SpacebarProps) => {
-  const short_name = (name: string) => {
-    if (name.split(" ").length > 2) {
-      return name.split(" ")[0][0] + name.split(" ")[1][0];
-    } else {
-      return name.split(" ")[0][0];
-    }
-  };
-
   return (
     <section className="spacebar">
       <header className="spacebar__header">

@@ -1,4 +1,4 @@
-import { createAppSlice } from "src/shared/ui/space/store/createAppSlice";
+import { createAppSlice } from "@/shared/store/createAppSlice";
 
 export type Message = {
   text: string;

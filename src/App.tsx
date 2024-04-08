@@ -1,14 +1,14 @@
 import "./App.css";
 
 import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 
 import Dialog from "./entities/dialog/Dialog";
+import { store } from "./shared/store/store";
 import Messagespace from "./widgets/messagespace/Messagespace";
 import Navbar from "./widgets/navbar/Navbar";
 import Spacebar from "./widgets/spacebar/Spacebar";
-import { Provider } from "react-redux";
-import { store } from "./shared/ui/space/store/store";
 
 type DialogFromBackend = {
   dialogId: number;

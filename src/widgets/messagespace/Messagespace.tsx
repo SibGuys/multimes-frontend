@@ -2,17 +2,16 @@ import "./Messagespace.css";
 
 import { SetStateAction, useEffect, useRef, useState } from "react";
 import Message from "src/featues/message/Message";
+import { short_name } from "src/shared/shortName";
+
+import { useAppDispatch, useAppSelector } from "@/shared/store/hooks";
 
 import logo from "../../assets/svg/icon-logo.svg";
 import send from "../../assets/svg/icon-send.svg";
 import Avatar from "../../featues/avatar/Avatar";
 import {
-  useAppDispatch,
-  useAppSelector,
-} from "src/shared/ui/space/store/hooks";
-import {
-  MessageToBack,
   getMessages,
+  MessageToBack,
   selectMessages,
   selectStatus,
   sendMessage,
@@ -25,13 +24,6 @@ type MessagespaceProps = {
 
 const Messagespace = ({ userName, messanger }: MessagespaceProps) => {
   let i = 0;
-  const short_name = (name: string) => {
-    if (name.split(" ").length > 2) {
-      return name.split(" ")[0][0] + name.split(" ")[1][0];
-    } else {
-      return name.split(" ")[0][0];
-    }
-  };
 
   const dispatch = useAppDispatch();
   const messages = useAppSelector(selectMessages);
